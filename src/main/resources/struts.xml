@@ -4,15 +4,40 @@
 	"http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
-    <constant name="struts.devMode" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
 
-    <package name="default" namespace="/" extends="struts-default">
-    	
-    	<action name="emp-*" class="employeeAction" method="{1}">
-    		<result name="{1}">views/emp-{1}.jsp</result>
-    		<result name="delete" type="redirect">/emp-list</result>
-    	</action>
-    
-    </package>
+	<package name="default" namespace="/" extends="struts-default">
+
+		<!--定义新的拦截器栈，配置prepare拦截器栈的alwaysInvokePrepare参数值 -->
+		<interceptors>
+			<interceptor-stack name="sshStack">
+				<interceptor-ref name="paramsPrepareParamsStack">
+					<param name="prepare.alwaysInvokePrepare">false</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="sshStack"></default-interceptor-ref>
+
+		<action name="emp-*" class="employeeAction"
+        	method="{1}">
+        	<result type="stream" name="ajax-success">
+		        <param name="contentType">text/html</param>
+		        <param name="inputName">inputStream</param>
+		    </result>
+        	<result name="list">views/emp-list.jsp</result>
+		    <result name="input">views/emp-input.jsp</result>
+		    <result name="success" type="redirect">/emp-list</result>
+        </action>
+        
+        <action name="emp-validateName" class="employeeAction"  
+        	method="validateName">
+        	<result type="stream" name="ajax-success">
+		        <param name="contentType">text/html</param>
+		        <param name="inputName">inputStream</param>
+		    </result>
+        </action>
+
+	</package>
 </struts>

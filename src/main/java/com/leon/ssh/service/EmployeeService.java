@@ -20,4 +20,12 @@ public class EmployeeService {
 	public void delete(Integer id){
 		employeeDao.delete(id);
 	}
+	
+	public void saveOrUpdate(Employee employee){
+		employeeDao.saveOrUpdate(employee);
+	}
+	
+	public boolean lastNameIsValid(String lastName){
+		return employeeDao.getEmployeeByLastName(lastName)==null;
+	}
 }

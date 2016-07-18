@@ -19,3 +19,7 @@ b.加入事务管理
 ②在spring的配置文件中正常配置Action，注意Action的scope为prototype
 ③在struts2的配置文件中配置Action时，class属性指向该Action在IOC容器中的ID
 4.完成功能
+1)获取所有员工信息
+3)添加员工
+①显示表单页面，需要先查询所有的部门信息
+②
