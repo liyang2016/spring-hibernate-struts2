@@ -20,4 +20,4 @@ b.加入事务管理
 ③在struts2的配置文件中配置Action时，class属性指向该Action在IOC容器中的ID
 4.完成功能
 1)获取所有员工信息
-3)添加员工
+3)添加员工test
