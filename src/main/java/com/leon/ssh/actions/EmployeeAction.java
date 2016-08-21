@@ -64,7 +64,10 @@ public class EmployeeAction extends ActionSupport implements RequestAware, Model
 
 		return "ajax-success";
 	}
-
+	
+	/*
+	*  控制器
+	*/
 	public String delete() {
 		try {
 			employeeService.delete(id);
